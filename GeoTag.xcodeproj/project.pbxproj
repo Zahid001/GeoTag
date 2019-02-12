@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8981407220B451A00442F01 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8981406220B451A00442F01 /* MapViewController.swift */; };
 		C8F7EFB0220AE1CB0006174E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7EFAF220AE1CB0006174E /* AppDelegate.swift */; };
-		C8F7EFB2220AE1CB0006174E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7EFB1220AE1CB0006174E /* ViewController.swift */; };
 		C8F7EFB5220AE1CB0006174E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F7EFB3220AE1CB0006174E /* Main.storyboard */; };
 		C8F7EFB7220AE1CC0006174E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F7EFB6220AE1CC0006174E /* Assets.xcassets */; };
 		C8F7EFBA220AE1CC0006174E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F7EFB8220AE1CC0006174E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C8981406220B451A00442F01 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C8F7EFAC220AE1CB0006174E /* GeoTag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoTag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F7EFAF220AE1CB0006174E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8F7EFB1220AE1CB0006174E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C8F7EFB4220AE1CB0006174E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C8F7EFB6220AE1CC0006174E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8F7EFB9220AE1CC0006174E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,11 +55,11 @@
 			isa = PBXGroup;
 			children = (
 				C8F7EFAF220AE1CB0006174E /* AppDelegate.swift */,
-				C8F7EFB1220AE1CB0006174E /* ViewController.swift */,
 				C8F7EFB3220AE1CB0006174E /* Main.storyboard */,
 				C8F7EFB6220AE1CC0006174E /* Assets.xcassets */,
 				C8F7EFB8220AE1CC0006174E /* LaunchScreen.storyboard */,
 				C8F7EFBB220AE1CC0006174E /* Info.plist */,
+				C8981406220B451A00442F01 /* MapViewController.swift */,
 			);
 			path = GeoTag;
 			sourceTree = "<group>";
@@ -135,8 +135,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8F7EFB2220AE1CB0006174E /* ViewController.swift in Sources */,
 				C8F7EFB0220AE1CB0006174E /* AppDelegate.swift in Sources */,
+				C8981407220B451A00442F01 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
