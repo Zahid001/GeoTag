@@ -30,6 +30,9 @@ class MapViewController: UIViewController,UISearchBarDelegate {
         //mapView.showsUserLocation = true
         createMultipleAnnotations(locations: annotationLocations)
         //showUserZooming()
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(_:)))
+        self.mapView.addGestureRecognizer(longPressRecognizer)
     }
     
     func setupLocationManager() {
@@ -72,6 +75,21 @@ class MapViewController: UIViewController,UISearchBarDelegate {
             mapView.setRegion(regeion, animated: true)
         }
     }
+    
+    
+    @objc func longPress(_ longPressClicked:UILongPressGestureRecognizer)   {
+        let location = longPressClicked.location(in: mapView)
+        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = "Custom Location"
+        mapView.addAnnotation(annotation)
+        
+    }
+    
+    
+    
     
     func createMultipleAnnotations(locations:[[String:Any]])  {
         for location in locations {
