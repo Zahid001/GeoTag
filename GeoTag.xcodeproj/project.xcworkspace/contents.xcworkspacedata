@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:GeoTag.xcodeproj">
+      location = "group:../../../../Downloads/Cosmos-master">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
