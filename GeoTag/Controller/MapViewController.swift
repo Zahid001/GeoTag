@@ -15,10 +15,11 @@ import Firebase
 
 class MapViewController: UIViewController,UISearchBarDelegate,MKMapViewDelegate {
 
+    var latLon = ""
     var cosmosView = CosmosView()
     var annotationLocations =
-        [["title" : "9/A, Ibn Sina trust building, Dhanmondi","lattitude" : 23.7451636, "longitude" : 90.370074 ],
-        ["title" : "Nilu Squire, Sat Masjid Road, Dhanmondi R/A","lattitude" : 23.7418789, "longitude" : 90.3717531 ]
+        [["title" : "9/A, Ibn Sina trust building, Dhanmondi","lattitude" : 23.7451636, "longitude" : 90.370074,"star" : 5.0 ],
+        ["title" : "Nilu Squire, Sat Masjid Road, Dhanmondi R/A","lattitude" : 23.7418789, "longitude" : 90.3717531,"star" : 5.0 ]
     
     ]
     
@@ -42,10 +43,34 @@ class MapViewController: UIViewController,UISearchBarDelegate,MKMapViewDelegate 
     }
     
     @IBAction func saveAnnotationInfo(_ sender: Any) {
+        var rat = 4.0
+        //var ratings = 0.0
+        let annotationDB = Database.database().reference().child("AnnotationnDetails")
+        annotationDB.observe(.childAdded) { (DataSnapshot) in
+            let annotationValue = DataSnapshot.value as! Dictionary<String , Any>
+            let star = annotationValue["star"] as! Double
+            rat = star
+        }
+        
         ratting.didTouchCosmos = {
             rating in
-            print("gjhk" ,rating)
+            rat = (rat+rating)/2
+            
+            
         }
+        if !(anotationTitle.text?.isEmpty)!{
+            annotationDB.child(latLon).updateChildValues(["title": anotationTitle.text!])
+        }
+        //rat = (rat+ratings)/2
+        annotationDB.child(self.latLon).updateChildValues(["star": rat]){error,ref in
+            
+            if (error != nil) {
+                print(error!)
+            }
+            self.animateOut()
+        }
+        
+        
     }
     
     
@@ -109,11 +134,21 @@ class MapViewController: UIViewController,UISearchBarDelegate,MKMapViewDelegate 
     }
     
     
-    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation{
+            return nil
+        }
+        
+        let annotationMapView = MKAnnotationView(annotation: annotation, reuseIdentifier: "mapview")
+        annotationMapView.image = UIImage(named: "dustbin")
+        //annotationMapView.canShowCallout = true
+        
+        return annotationMapView
+    }
     
     @objc func longPress(_ longPressClicked:UILongPressGestureRecognizer)   {
         
-        let annotationDB = Database.database().reference().child("AnnotationnDetail")
+        let annotationDB = Database.database().reference().child("AnnotationnDetails")
         var titl:String = ""
         var textField = UITextField()
         //var btn = UIButton()
@@ -121,17 +156,23 @@ class MapViewController: UIViewController,UISearchBarDelegate,MKMapViewDelegate 
         let location = longPressClicked.location(in: mapView)
         
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-        
+        let lat = "\(coordinate.latitude)".replacingOccurrences(of: ".", with: "")
+        let lon = "\(coordinate.longitude)".replacingOccurrences(of: ".", with: "")
+        latLon = lat + lon
         let alert = UIAlertController(title: "Add Location", message: "", preferredStyle: .alert)
             let action = UIAlertAction(title: "Add Place", style: .default) { (UIAlertAction) in
 
 
 
                 titl = textField.text!
+//                let annotationView = MKAnnotationView()
+//                annotationView.image = UIImage(named: "dustbin.png")
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coordinate
 
                 annotation.title = titl
+                
+                
                 let annotationDictionary = [
                     
                     "title" : titl,
@@ -141,7 +182,8 @@ class MapViewController: UIViewController,UISearchBarDelegate,MKMapViewDelegate 
                 
                     ] as [String : Any]
                 
-                annotationDB.childByAutoId().setValue(annotationDictionary){
+                //annotationDB.childByAutoId().setValue(annotationDictionary){
+                annotationDB.child(lat+lon).setValue(annotationDictionary){
                     (error,ref) in
                     
                     if error != nil {
@@ -150,7 +192,7 @@ class MapViewController: UIViewController,UISearchBarDelegate,MKMapViewDelegate 
                         print("details saved")
                     }
                 }
-                print(coordinate.latitude)
+                print("lat",coordinate.latitude)
 
                 self.annotationLocations.append(annotationDictionary)
                 self.mapView.addAnnotation(annotation)
@@ -184,22 +226,31 @@ class MapViewController: UIViewController,UISearchBarDelegate,MKMapViewDelegate 
             let title = annotationValue["title"]
             let lat = annotationValue["lattitude"]
             let lon = annotationValue["longitude"]
-            print(lat!, lon!, title!)
+            let rating = annotationValue["star"] as! Double
+            //print(lat!, lon!, title!)
             let dict = [
                 "title" : title!,
                 "lattitude" : lat!,
-                "longitude" : lon!
+                "longitude" : lon!,
+                "star" : rating
             ] as [String : Any]
-            self.annotationLocations.append(dict  )
+            if rating > 2{
+                self.annotationLocations.append(dict)
+            }
+            
             self.createMultipleAnnotations(locations: self.annotationLocations)
         }
     }
     
 
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
-        animateIn()
-    }
+//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+//        let lat = "\(view.annotation!.coordinate.latitude)".replacingOccurrences(of: ".", with: "")
+//        let lon = "\(view.annotation!.coordinate.longitude)".replacingOccurrences(of: ".", with: "")
+//        latLon = lat+lon
+//        
+//        animateIn()
+//        
+//    }
     
     func animateIn() {
         self.view.addSubview(popUpView)

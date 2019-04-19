@@ -10,6 +10,7 @@
 		6306FF7726DBC2D0DEFA1B86 /* Pods_GeoTag.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4971D28C5AFFD2607FC80D /* Pods_GeoTag.framework */; };
 		C878572E224AABC300B5F6C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C878572D224AABC300B5F6C9 /* GoogleService-Info.plist */; };
 		C8981407220B451A00442F01 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8981406220B451A00442F01 /* MapViewController.swift */; };
+		C8C843F922647D1C00BF51F7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C843F822647D1C00BF51F7 /* Default-568h@2x.png */; };
 		C8F7EFB0220AE1CB0006174E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7EFAF220AE1CB0006174E /* AppDelegate.swift */; };
 		C8F7EFB5220AE1CB0006174E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8F7EFB3220AE1CB0006174E /* Main.storyboard */; };
 		C8F7EFB7220AE1CC0006174E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8F7EFB6220AE1CC0006174E /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		9F4971D28C5AFFD2607FC80D /* Pods_GeoTag.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeoTag.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C878572D224AABC300B5F6C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8981406220B451A00442F01 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C8C843F822647D1C00BF51F7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C8F7EFAC220AE1CB0006174E /* GeoTag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoTag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8F7EFAF220AE1CB0006174E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8F7EFB4220AE1CB0006174E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,9 +61,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C8C843F4226474EA00BF51F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C8F7EFB8220AE1CC0006174E /* LaunchScreen.storyboard */,
+				C8F7EFB3220AE1CB0006174E /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C8C843F52264751700BF51F7 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				C8F7EFB6220AE1CC0006174E /* Assets.xcassets */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		C8C843F62264753B00BF51F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C8981406220B451A00442F01 /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C8C843F72264755A00BF51F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C8F7EFAF220AE1CB0006174E /* AppDelegate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C8F7EFA3220AE1CB0006174E = {
 			isa = PBXGroup;
 			children = (
+				C8C843F822647D1C00BF51F7 /* Default-568h@2x.png */,
 				C8F7EFAE220AE1CB0006174E /* GeoTag */,
 				C8F7EFAD220AE1CB0006174E /* Products */,
 				046129A9122AFE5826D624B8 /* Pods */,
@@ -80,11 +116,10 @@
 		C8F7EFAE220AE1CB0006174E /* GeoTag */ = {
 			isa = PBXGroup;
 			children = (
-				C8F7EFAF220AE1CB0006174E /* AppDelegate.swift */,
-				C8981406220B451A00442F01 /* MapViewController.swift */,
-				C8F7EFB3220AE1CB0006174E /* Main.storyboard */,
-				C8F7EFB6220AE1CC0006174E /* Assets.xcassets */,
-				C8F7EFB8220AE1CC0006174E /* LaunchScreen.storyboard */,
+				C8C843F52264751700BF51F7 /* other */,
+				C8C843F72264755A00BF51F7 /* Model */,
+				C8C843F4226474EA00BF51F7 /* View */,
+				C8C843F62264753B00BF51F7 /* Controller */,
 				C8F7EFBB220AE1CC0006174E /* Info.plist */,
 				C878572D224AABC300B5F6C9 /* GoogleService-Info.plist */,
 			);
@@ -154,6 +189,7 @@
 				C8F7EFBA220AE1CC0006174E /* LaunchScreen.storyboard in Resources */,
 				C878572E224AABC300B5F6C9 /* GoogleService-Info.plist in Resources */,
 				C8F7EFB7220AE1CC0006174E /* Assets.xcassets in Resources */,
+				C8C843F922647D1C00BF51F7 /* Default-568h@2x.png in Resources */,
 				C8F7EFB5220AE1CB0006174E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
